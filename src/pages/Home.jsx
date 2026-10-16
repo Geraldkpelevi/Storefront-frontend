@@ -7,60 +7,13 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import CardWithList from "../components/CardWithList";
-
-const recentOrders = [
-  {
-    id: "#ORD-1001",
-    customer: "John Smith",
-    product: "Wireless Headphones",
-    date: "Oct 15, 2026",
-    amount: "kwd20.00",
-    status: "Completed",
-  },
-  {
-    id: "#ORD-1002",
-    customer: "Sarah Johnson",
-    product: "Smart Watch",
-    date: "Oct 14, 2026",
-    amount: "kwd250.00",
-    status: "Pending",
-  },
-  {
-    id: "#ORD-1003",
-    customer: "Michael Brown",
-    product: "Laptop Stand",
-    date: "Oct 13, 2026",
-    amount: "kwd85.00",
-    status: "Completed",
-  },
-  {
-    id: "#ORD-1004",
-    customer: "Emily Davis",
-    product: "Mechanical Keyboard",
-    date: "Oct 12, 2026",
-    amount: "kwd150.00",
-    status: "Cancelled",
-  },
-  {
-    id: "#ORD-1005",
-    customer: "David Wilson",
-    product: "USB-C Hub",
-    date: "Oct 11, 2026",
-    amount: "kwd65.00",
-    status: "Pending",
-  },
-];
-
-const chartData = [
-  { month: "May", value: 35 },
-  { month: "Jun", value: 55 },
-  { month: "Jul", value: 42 },
-  { month: "Aug", value: 75 },
-  { month: "Sep", value: 60 },
-  { month: "Oct", value: 90 },
-];
+import { recentOrdersData } from "../data/recentOrdersData";
+import {chartData} from "../data/chartData";
+import {useNavigate} from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className="">
       {/* Main Content */}
@@ -126,7 +79,6 @@ export default function Home() {
         </Card>
 
         <CardWithList />
-       
       </div>
 
       {/* Recent Orders Table */}
@@ -147,7 +99,7 @@ export default function Home() {
             </Typography>
           </div>
 
-          <Button variant="outlined" color="blue" size="sm">
+          <Button variant="outlined" color="blue" size="sm" onClick={() => navigate("/orders")}>
             View All Orders
           </Button>
         </CardHeader>
@@ -180,7 +132,7 @@ export default function Home() {
             </thead>
 
             <tbody>
-              {recentOrders.map((order, index) => {
+              {recentOrdersData.slice(0, 5).map((order) => {
                 const statusColor = {
                   Completed: "green",
                   Pending: "orange",

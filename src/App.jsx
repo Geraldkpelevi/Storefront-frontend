@@ -8,7 +8,7 @@ export default function App() {
   const { pathname } = useLocation();
   const [mobileSidebarPath, setMobileSidebarPath] = useState(null);
   const mobileSidebarOpen = mobileSidebarPath === pathname;
-  const showSidebar = ["/dashboard", "/messages", "/settings"].includes(
+  const showSidebar = ["/dashboard", "/messages", "/settings", "/orders", "/products"].includes(
     pathname,
   );
   const showNavbar = !showSidebar;
